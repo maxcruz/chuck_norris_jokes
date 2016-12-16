@@ -10,12 +10,9 @@ import android.widget.Toast
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
+import com.example.max.chucknorristest.ChuckNorrisApplication
 import com.example.max.chucknorristest.R
-import com.example.max.chucknorristest.data.ChuckNorrisService
-import com.example.max.chucknorristest.data.client.ServiceFactory
-import com.example.max.chucknorristest.domain.GetJoke
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), MainContract.View {
 
@@ -26,6 +23,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     @BindView(R.id.progressBar)
     lateinit var progressBar: ProgressBar
 
+    @Inject
     lateinit var presenter: MainContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,13 +40,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     private fun setupInjection() {
-        val chuckNorrisService = ServiceFactory.create(ChuckNorrisService::class.java,
-                ChuckNorrisService.SERVICE_ENDPOINT)
-        val repository = MainRepository(chuckNorrisService)
-        val observeOn = AndroidSchedulers.mainThread()
-        val subscribeOn = Schedulers.io()
-        val jokeUseCase = GetJoke(repository, subscribeOn, observeOn)
-        presenter = MainPresenter(this, jokeUseCase)
+        (application as ChuckNorrisApplication).getMainComponent(this).inject(this)
     }
 
     @OnClick(R.id.button)
