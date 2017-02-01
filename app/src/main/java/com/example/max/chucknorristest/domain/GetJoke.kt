@@ -1,8 +1,8 @@
 package com.example.max.chucknorristest.domain
 
 import com.example.max.chucknorristest.presentation.showPhrase.MainContract
-import rx.Observable
-import rx.Scheduler
+import io.reactivex.Observable
+import io.reactivex.Scheduler
 
 class GetJoke(val repository: MainContract.Model,
               subscribeOn: Scheduler,
@@ -13,7 +13,7 @@ class GetJoke(val repository: MainContract.Model,
         return repository.requestPhrase().map{ Output(it.value) }
     }
 
-    class Input() : UseCase.Input
+    class Input : UseCase.Input
     data class Output(val joke: String) : UseCase.Output
 
 }

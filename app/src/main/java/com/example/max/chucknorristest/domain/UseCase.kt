@@ -1,7 +1,7 @@
 package com.example.max.chucknorristest.domain
 
-import rx.Observable
-import rx.Scheduler
+import io.reactivex.Observable
+import io.reactivex.Scheduler
 
 /**
  * This abstract class represents an execution unit for different use cases. Any use case in the

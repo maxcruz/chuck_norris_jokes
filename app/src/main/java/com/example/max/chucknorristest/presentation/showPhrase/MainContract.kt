@@ -1,7 +1,7 @@
 package com.example.max.chucknorristest.presentation.showPhrase
 
 import com.example.max.chucknorristest.models.Joke
-import rx.Observable
+import io.reactivex.Observable
 
 interface MainContract {
 

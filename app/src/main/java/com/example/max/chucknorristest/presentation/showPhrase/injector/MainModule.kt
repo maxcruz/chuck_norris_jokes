@@ -7,8 +7,8 @@ import com.example.max.chucknorristest.presentation.showPhrase.MainPresenter
 import com.example.max.chucknorristest.presentation.showPhrase.MainRepository
 import dagger.Module
 import dagger.Provides
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Singleton
 
 @Module

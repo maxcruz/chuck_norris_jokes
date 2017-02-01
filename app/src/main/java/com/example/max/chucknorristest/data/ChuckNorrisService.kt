@@ -1,8 +1,9 @@
 package com.example.max.chucknorristest.data
 
 import com.example.max.chucknorristest.models.Joke
+import io.reactivex.Observable
+import retrofit2.Response
 import retrofit2.http.GET
-import rx.Observable
 
 interface ChuckNorrisService {
 
@@ -11,6 +12,6 @@ interface ChuckNorrisService {
     }
 
     @GET("jokes/random")
-    fun getJokeRandom(): Observable<Joke>
+    fun getJokeRandom(): Observable<Response<Joke>>
 
 }
