@@ -1,6 +1,7 @@
 package com.example.max.chucknorristest.data.client
 
 import com.example.max.chucknorristest.BuildConfig
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -17,6 +18,7 @@ class ServiceFactory {
                 val logger = HttpLoggingInterceptor()
                 logger.level = HttpLoggingInterceptor.Level.BODY
                 httpClientBuilder.addInterceptor(logger)
+                httpClientBuilder.addInterceptor(StethoInterceptor())
             }
             val retrofit = Retrofit.Builder()
                     .baseUrl(endPoint)
@@ -27,6 +29,7 @@ class ServiceFactory {
                     .build()
             return retrofit.create(clazz)
         }
+
     }
 
 }
